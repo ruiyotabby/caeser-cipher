@@ -3,12 +3,26 @@ def ceaser_cipher(sentence, shift)
     unless /[[:alpha:]]/.match(char)
       char = char
     else
-      char = char.ord + shift
+      if char.ord >= 65 && char.ord <= 90
+        if char.ord + shift > 90
+          rem = (char.ord + shift) - 91
+          char = 65 + rem
+        else
+          char = char.ord + shift
+        end
+      elsif char.ord >= 97 && char.ord <= 122
+        if char.ord + shift > 122
+          rem = (char.ord + shift) - 123
+          char = 97 + rem
+        else
+          char = char.ord + shift
+        end
+      end
       char.chr
     end
   end
-  p ciphered_sentence.join('')
+  ciphered_sentence.join('')
 
 end
 
-ceaser_cipher('Hello d_s!', 4)
+p ceaser_cipher('What a String!', 5)
